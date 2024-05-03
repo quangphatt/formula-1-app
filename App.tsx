@@ -3,7 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 import { MagicModalPortal } from 'react-native-magic-modal';
-import { View, Text } from 'react-native';
+import AppNavigation from "@navigation";
 import theme from '@components/theme';
 
 const App = () => {
@@ -12,9 +12,7 @@ const App = () => {
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
           <MagicModalPortal />
-          <View>
-            <Text>App</Text>
-          </View>
+          <AppNavigation />
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
