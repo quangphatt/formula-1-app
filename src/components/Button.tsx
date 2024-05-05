@@ -51,7 +51,7 @@ export const ButtonWapper = styled(ButtonPreventDouble)`
         : props.theme.colors.primary_color};
 `;
 
-type ButtonProps = {
+export type ButtonProps = {
   label: string;
   onPress: () => void;
   style?: ViewStyle;
