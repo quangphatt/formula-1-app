@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import theme from '@components/theme';
 
-type IconProps = {
+export type IconProps = {
   name: string;
   size: number;
   color: string;
@@ -22,7 +22,7 @@ type IconProps = {
 
 export const Icon = ({
   name,
-  size = 16,
+  size = 14,
   color = theme.text_colors.secondary_text_color,
   type = 'FontAwesome6',
 }: IconProps) => {

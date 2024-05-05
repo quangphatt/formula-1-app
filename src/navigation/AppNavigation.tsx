@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Icon } from '@components';
+import { Icon, Button } from '@components';
 
 const AppNavigation = () => {
   return (
