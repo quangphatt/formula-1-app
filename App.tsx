@@ -4,7 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 import { MagicModalPortal } from 'react-native-magic-modal';
 import NetInfoHandler from '@services/net_info';
-import AppNavigation from '@navigation';
+import { AppNavigation } from '@navigation';
 import theme from '@components/theme';
 
 const App = () => {

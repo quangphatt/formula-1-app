@@ -1,3 +1,1 @@
-import AppNavigation from './AppNavigation.tsx';
-
-export default AppNavigation;
+export { default as AppNavigation } from './AppNavigation.tsx';

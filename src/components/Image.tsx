@@ -46,7 +46,7 @@ export const Image = ({
       <RNImage
         source={source}
         defaultSource={default_img}
-        style={{ flex: 1, ...imageStyle }}
+        style={{ flex: 1,width: '100%', height: '100%', ...imageStyle }}
       />
     </View>
   );

@@ -29,9 +29,9 @@ const preventDoubleClick = (WrappedComponent) => {
   return PreventDoubleClick;
 };
 
-const ButtonPreventDouble = preventDoubleClick(TouchableOpacity);
+export const ButtonPreventDouble = preventDoubleClick(TouchableOpacity);
 
-export const ButtonWapper = styled(ButtonPreventDouble)`
+export const ButtonWrapper = styled(ButtonPreventDouble)`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -79,7 +79,7 @@ export const Button = ({
     : theme.colors.primary_color;
 
   return (
-    <ButtonWapper
+    <ButtonWrapper
       onPress={onPress}
       style={{ gap: 5, ...style }}
       primary={primary}
@@ -88,7 +88,7 @@ export const Button = ({
       {!!leftIcon?.name && <Icon {...leftIcon} color={labelColor} />}
       <Text style={{ color: labelColor, ...labelStyle }}>{label}</Text>
       {!!rightIcon?.name && <Icon {...rightIcon} color={labelColor} />}
-    </ButtonWapper>
+    </ButtonWrapper>
   );
 };
 
@@ -127,11 +127,7 @@ export const ButtonScrollToTop = ({
       }}
     >
       <ButtonPreventDouble onPress={onScrollToTop}>
-        <Icon.VectorIcon
-          name={'arrow-up'}
-          size={24}
-          color={theme.colors.white_color}
-        />
+        <Icon name={'arrow-up'} size={24} color={theme.colors.white_color} />
       </ButtonPreventDouble>
     </View>
   );
