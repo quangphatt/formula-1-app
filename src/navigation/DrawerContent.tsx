@@ -1,82 +1,18 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text, TextBody, Image, Icon, ButtonPreventDouble } from '@components';
+import { TextBody, Image, Icon, ButtonPreventDouble } from '@components';
 import { useNavigation } from '@react-navigation/native';
+import { navigate, getCurrentRoute } from './actions';
 import theme from '@components/theme';
 import f1_img from '@assets/images/f1-mini.png';
-
-const MENU = [
-  {
-    name: 'Home',
-    route: 'Home',
-    icon: {
-      name: 'home',
-      type: 'FontAwesome',
-    },
-  },
-  {
-    name: 'Competitions',
-    route: 'Competitions',
-    icon: {
-      name: 'Trophy',
-      type: 'AntDesign',
-    },
-  },
-  {
-    name: 'Circuits',
-    route: 'Circuits',
-    icon: {
-      name: 'timer',
-      type: 'Ionicons',
-    },
-  },
-  {
-    name: 'Teams',
-    route: 'Teams',
-    icon: {
-      name: 'users',
-      size: 14,
-    },
-  },
-  {
-    name: 'Drivers',
-    route: 'Drivers',
-    icon: {
-      name: 'user',
-    },
-  },
-  {
-    name: 'Races',
-    route: 'Races',
-    icon: {
-      name: 'flag-checkered',
-    },
-  },
-  {
-    name: 'Ranking',
-    route: 'Ranking',
-    icon: {
-      name: 'chart-simple',
-    },
-  },
-  {
-    name: 'Pit Stops',
-    route: 'Pitstops',
-    icon: {
-      name: 'stop',
-      type: 'Octicons',
-    },
-  },
-];
+import { MENU_ITEMS } from './menu_item';
 
 const DrawerContent = () => {
-  const navigation = useNavigation();
-
   return (
     <View>
       <Image source={f1_img} width={240} height={120} />
       <View style={{ paddingHorizontal: 5, paddingVertical: 5 }}>
-        {MENU.map((item) => (
+        {MENU_ITEMS.map((item) => (
           <MenuItem item={item} key={item.route} />
         ))}
       </View>
@@ -88,11 +24,14 @@ export default DrawerContent;
 
 const MenuItem = ({ item }) => {
   const { name, route, icon } = item;
-  const navigation = useNavigation();
-  const isCurrentRoute = name === navigation.getCurrentRoute().name;
+  const currentRoute = getCurrentRoute()?.name;
+  const isCurrentRoute =
+    route === 'Ranking'
+      ? currentRoute?.includes('Ranking')
+      : route === currentRoute;
 
   const onPress = () => {
-    navigation.navigate(route);
+    navigate(route);
   };
 
   return (
@@ -110,8 +49,8 @@ const MenuItem = ({ item }) => {
         borderRadius: 5,
       }}
     >
-      <Icon size={icon.size || 18} {...icon} width={20} />
-      <TextBody bold fontSize={20}>
+      <Icon size={icon.size || 22} {...icon} width={26} />
+      <TextBody bold fontSize={22}>
         {name}
       </TextBody>
     </ButtonPreventDouble>

@@ -19,6 +19,7 @@ export type IconProps = {
     | 'FontAwesome6'
     | 'Ionicons'
     | 'MaterialCommunityIcons';
+  primary?: boolean;
 };
 
 export const Icon = ({
@@ -26,9 +27,15 @@ export const Icon = ({
   size = 14,
   color = theme.text_colors.secondary_text_color,
   type = 'FontAwesome6',
+  primary,
   ...otherProps
 }: IconProps) => {
-  const iconProps = { name, size, color, ...otherProps };
+  const iconProps = {
+    name,
+    size,
+    color: primary ? theme.colors.primary_color : color,
+    ...otherProps,
+  };
 
   switch (type) {
     case 'AntDesign':
