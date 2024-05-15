@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { TextBody, Image, Icon, ButtonPreventDouble } from '@components';
 import { useNavigation } from '@react-navigation/native';
-import { navigate, getCurrentRoute } from './actions';
+import { navigate, getCurrentRoute, closeDrawer } from './actions';
 import theme from '@components/theme';
 import f1_img from '@assets/images/f1-mini.png';
 import { MENU_ITEMS } from './menu_item';
@@ -11,6 +11,16 @@ const DrawerContent = () => {
   return (
     <View>
       <Image source={f1_img} width={240} height={120} />
+      <ButtonPreventDouble
+        onPress={closeDrawer}
+        style={{
+          position: 'absolute',
+          right: 15,
+          top: 10,
+        }}
+      >
+        <Icon name="xmark" size={24} />
+      </ButtonPreventDouble>
       <View style={{ paddingHorizontal: 5, paddingVertical: 5 }}>
         {MENU_ITEMS.map((item) => (
           <MenuItem item={item} key={item.route} />
