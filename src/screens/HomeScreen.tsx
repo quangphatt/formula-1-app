@@ -11,9 +11,11 @@ import {
 import { MENU_ITEMS, openDrawer, navigate } from '@navigation';
 import f1_img from '@assets/images/f1-mini.png';
 import theme from '@components/theme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
 
   return (
     <View
@@ -28,7 +30,7 @@ const HomeScreen = () => {
         style={{
           position: 'absolute',
           left: 15,
-          top: 10,
+          top: insets.top + 10,
         }}
       >
         <Icon name="menu" type="Ionicons" size={32} />

@@ -1,5 +1,10 @@
 import React, { PureComponent, RefObject } from 'react';
-import { TouchableOpacity, type ViewStyle, type TextStyle } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  type ViewStyle,
+  type TextStyle,
+} from 'react-native';
 import { Icon, type IconProps } from './Icon';
 import { Text } from './Text';
 import debounce from 'lodash.debounce';
@@ -99,7 +104,7 @@ type ButtonScrollToTopProps = {
 
 export const ButtonScrollToTop = ({
   listRef,
-  isFlatList = false,
+  isFlatList = true,
 }: ButtonScrollToTopProps) => {
   const onScrollToTop = () => {
     if (isFlatList) {
