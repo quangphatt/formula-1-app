@@ -1,9 +1,14 @@
 import React from 'react';
 import { View, Dimensions } from 'react-native';
 import { magicModal } from 'react-native-magic-modal';
-import { Text, TextH3, TextBody } from './Text';
-import { Icon } from './Icon';
-import { Button, type ButtonProps } from './Button';
+import {
+  Text,
+  TextH3,
+  TextBody,
+  Icon,
+  Button,
+  type ButtonProps,
+} from '@components';
 import theme from '@components/theme';
 
 const ActionType = {

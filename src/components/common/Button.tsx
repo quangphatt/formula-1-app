@@ -1,5 +1,10 @@
 import React, { PureComponent, RefObject } from 'react';
-import { TouchableOpacity, type ViewStyle, type TextStyle } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  type ViewStyle,
+  type TextStyle,
+} from 'react-native';
 import { Icon, type IconProps } from './Icon';
 import { Text } from './Text';
 import debounce from 'lodash.debounce';
@@ -29,9 +34,9 @@ const preventDoubleClick = (WrappedComponent) => {
   return PreventDoubleClick;
 };
 
-const ButtonPreventDouble = preventDoubleClick(TouchableOpacity);
+export const ButtonPreventDouble = preventDoubleClick(TouchableOpacity);
 
-export const ButtonWapper = styled(ButtonPreventDouble)`
+export const ButtonWrapper = styled(ButtonPreventDouble)`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -79,7 +84,7 @@ export const Button = ({
     : theme.colors.primary_color;
 
   return (
-    <ButtonWapper
+    <ButtonWrapper
       onPress={onPress}
       style={{ gap: 5, ...style }}
       primary={primary}
@@ -88,7 +93,7 @@ export const Button = ({
       {!!leftIcon?.name && <Icon {...leftIcon} color={labelColor} />}
       <Text style={{ color: labelColor, ...labelStyle }}>{label}</Text>
       {!!rightIcon?.name && <Icon {...rightIcon} color={labelColor} />}
-    </ButtonWapper>
+    </ButtonWrapper>
   );
 };
 
@@ -99,7 +104,7 @@ type ButtonScrollToTopProps = {
 
 export const ButtonScrollToTop = ({
   listRef,
-  isFlatList = false,
+  isFlatList = true,
 }: ButtonScrollToTopProps) => {
   const onScrollToTop = () => {
     if (isFlatList) {
@@ -127,11 +132,7 @@ export const ButtonScrollToTop = ({
       }}
     >
       <ButtonPreventDouble onPress={onScrollToTop}>
-        <Icon.VectorIcon
-          name={'arrow-up'}
-          size={24}
-          color={theme.colors.white_color}
-        />
+        <Icon name={'arrow-up'} size={24} color={theme.colors.white_color} />
       </ButtonPreventDouble>
     </View>
   );
