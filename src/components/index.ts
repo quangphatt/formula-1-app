@@ -5,3 +5,4 @@ export * from './common/Image';
 export * from './common/SearchTextInput';
 export * from './common/Text';
 export * from './CompetitionItem';
+export * from './CircuitItem';
