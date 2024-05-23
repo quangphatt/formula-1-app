@@ -10,8 +10,8 @@ import default_img from '@assets/images/img.jpg';
 
 type ImageProps = {
   source: ImageSourcePropType;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   style?: ViewStyle;
   imageStyle?: ViewStyle;
   circle?: boolean;
@@ -26,6 +26,7 @@ export const Image = ({
   imageStyle,
   circle,
   borderRadius,
+  ...props
 }: ImageProps) => {
   const width = imageWidth || 24;
   const height = circle ? width : imageHeight || width;
@@ -46,7 +47,8 @@ export const Image = ({
       <RNImage
         source={source}
         defaultSource={default_img}
-        style={{ flex: 1,width: '100%', height: '100%', ...imageStyle }}
+        style={{ flex: 1, width: '100%', height: 'auto', ...imageStyle }}
+        {...props}
       />
     </View>
   );

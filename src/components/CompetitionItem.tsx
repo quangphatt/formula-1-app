@@ -12,7 +12,11 @@ type CompetitionItemProps = {
   };
 };
 
-export const CompetitionItem = ({ id, name, location }) => {
+export const CompetitionItem = ({
+  id,
+  name,
+  location,
+}: CompetitionItemProps) => {
   return (
     <View
       style={{

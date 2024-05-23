@@ -1,3 +1,4 @@
+export { default as CircuitScreen } from './CircuitScreen';
 export { default as CircuitsScreen } from './CircuitsScreen';
 export { default as CompetitionsScreen } from './CompetitionsScreen';
 export { default as DriverScreen } from './DriverScreen';
