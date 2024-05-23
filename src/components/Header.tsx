@@ -8,9 +8,10 @@ import { openDrawer, goBack } from '@navigation';
 type HeaderProps = {
   title: string;
   hasBackButton?: boolean;
+  actionLeft?: () => void;
 };
 
-export const Header = ({ title = '', hasBackButton }) => {
+export const Header = ({ title = '', hasBackButton, actionLeft }) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -24,7 +25,7 @@ export const Header = ({ title = '', hasBackButton }) => {
       }}
     >
       <ButtonPreventDouble
-        onPress={hasBackButton ? goBack : openDrawer}
+        onPress={actionLeft ? actionLeft : hasBackButton ? goBack : openDrawer}
         style={{
           position: 'absolute',
           left: 12,
@@ -32,7 +33,7 @@ export const Header = ({ title = '', hasBackButton }) => {
         }}
       >
         <Icon
-          name={hasBackButton ? 'arrow-back' : 'menu'}
+          name={hasBackButton || actionLeft ? 'arrow-back' : 'menu'}
           type="Ionicons"
           size={30}
           color={theme.colors.white_color}

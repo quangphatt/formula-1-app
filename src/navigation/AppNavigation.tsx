@@ -4,6 +4,7 @@ import { Icon, Button, Image } from '@components';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
+  CircuitScreen,
   CircuitsScreen,
   CompetitionsScreen,
   DriverScreen,
@@ -50,6 +51,7 @@ const AppNavigation = () => {
         drawerContent={DrawerContent}
         initialRouteName="Home"
       >
+        <Drawer.Screen name="Circuit" component={CircuitScreen} />
         <Drawer.Screen name="Circuits" component={CircuitsScreen} />
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Competitions" component={CompetitionsScreen} />
