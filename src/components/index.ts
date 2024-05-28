@@ -4,6 +4,7 @@ export * from './common/Icon';
 export * from './common/Image';
 export * from './common/SearchTextInput';
 export * from './common/Text';
+export * from './ListSearch';
 export * from './CompetitionItem';
 export * from './CircuitItem';
 export * from './TeamItem';
