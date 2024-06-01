@@ -39,7 +39,16 @@ export const Header = ({ title = '', hasBackButton, actionLeft }) => {
           color={theme.colors.white_color}
         />
       </ButtonPreventDouble>
-      <TextH3 color={theme.colors.white_color}>{title}</TextH3>
+      <TextH3
+        style={{
+          paddingHorizontal: 30,
+          textAlign: 'center',
+        }}
+        numberOfLines={1}
+        color={theme.colors.white_color}
+      >
+        {title}
+      </TextH3>
     </View>
   );
 };

@@ -7,4 +7,5 @@ export * from './common/Text';
 export * from './ListSearch';
 export * from './CompetitionItem';
 export * from './CircuitItem';
+export * from './DriverItem';
 export * from './TeamItem';
