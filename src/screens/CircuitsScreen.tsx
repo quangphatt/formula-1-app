@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { Header, CircuitItem, ListSearch } from '@components';
-import { getCircuits } from '@services/api';
+import { useCircuit } from '@hooks';
 
 const CircuitsScreen = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const result = await getCircuits();
-    if (result.status === 200) {
-      const _data = result?.data?.response ?? [];
-      setData(_data);
-    }
-  };
+  const { circuits, isLoading } = useCircuit();
 
   const renderItem = ({ item, index }) => {
     return <CircuitItem key={item.id} data={item} />;
   };
 
   const filterData = (searchText) => {
-    return data.filter((item) =>
+    if (!circuits?.length) return [];
+    return circuits.filter((item) =>
       item.name.toUpperCase().includes(searchText.toUpperCase()),
     );
   };

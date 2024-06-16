@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { get, Url } from '@services/api';
 
-export const useCompetition = (params = {}) => {
+export const useCircuit = (params = {}) => {
   const { data, isLoading } = useQuery({
-    queryKey: ['competition', params],
+    queryKey: ['circuit', params],
     queryFn: async () => {
-      const result = await get(Url.competitions, params);
+      const result = await get(Url.circuits, params);
       if (result.status === 200) {
         return result?.data?.response ?? [];
       }
@@ -13,5 +13,5 @@ export const useCompetition = (params = {}) => {
     },
   });
 
-  return { competitions: data, isLoading };
+  return { circuits: data, isLoading };
 };
