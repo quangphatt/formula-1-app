@@ -12,6 +12,7 @@ module.exports = {
           '@screens': './src/screens',
           '@services': './src/services',
           '@data': './src/data',
+          '@hooks': './src/hooks',
         }
       }
     ],
