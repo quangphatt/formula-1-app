@@ -6,16 +6,24 @@ import { MagicModalPortal } from 'react-native-magic-modal';
 import NetInfoHandler from '@services/net_info';
 import { AppNavigation } from '@navigation';
 import theme from '@components/theme';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider theme={theme}>
-          <NetInfoHandler />
-          <MagicModalPortal />
-          <AppNavigation />
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            <NetInfoHandler />
+            <MagicModalPortal />
+            <AppNavigation />
+          </ThemeProvider>
+        </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );
