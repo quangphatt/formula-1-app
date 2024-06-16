@@ -1,15 +1,18 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Header, DriverItem, ListSearch } from '@components';
-import { DRIVERS } from '../data';
+import { useDriver } from '@hooks';
 
 const DriversScreen = () => {
+  const { drivers, isLoading } = useDriver();
+
   const renderItem = ({ item, index }) => {
     return <DriverItem key={item.id} data={item} />;
   };
 
   const filterData = (searchText) => {
-    return DRIVERS.filter((item) =>
+    if (!drivers?.length) return [];
+    return drivers.filter((item) =>
       item.name.toUpperCase().includes(searchText.toUpperCase()),
     );
   };

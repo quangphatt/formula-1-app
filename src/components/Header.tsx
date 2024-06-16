@@ -41,7 +41,7 @@ export const Header = ({ title = '', hasBackButton, actionLeft }) => {
       </ButtonPreventDouble>
       <TextH3
         style={{
-          paddingHorizontal: 30,
+          paddingHorizontal: 50,
           textAlign: 'center',
         }}
         numberOfLines={1}
