@@ -1,5 +1,12 @@
+import { useQuery } from '@tanstack/react-query';
 import { DRIVERS } from '@data';
 
 export const useDriver = (params = {}) => {
-  return { drivers: DRIVERS, isLoading: false };
+  const { data, isLoading } = useQuery({
+    queryKey: ['driver', params],
+    queryFn: () => {
+      return DRIVERS;
+    },
+  });
+  return { drivers: data, isLoading };
 };
