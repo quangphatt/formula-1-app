@@ -11,6 +11,7 @@ import {
   DriversScreen,
   HomeScreen,
   PitstopsScreen,
+  RaceScreen,
   RacesScreen,
   TeamScreen,
   TeamsScreen,
@@ -58,6 +59,7 @@ const AppNavigation = () => {
         <Drawer.Screen name="Driver" component={DriverScreen} />
         <Drawer.Screen name="Drivers" component={DriversScreen} />
         <Drawer.Screen name="Pitstops" component={PitstopsScreen} />
+        <Drawer.Screen name="Race" component={RaceScreen} />
         <Drawer.Screen name="Races" component={RacesScreen} />
         <Drawer.Screen name="Ranking" component={RankingNavigation} />
         <Drawer.Screen name="Team" component={TeamScreen} />

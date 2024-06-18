@@ -5,6 +5,7 @@ export { default as DriverScreen } from './DriverScreen';
 export { default as DriversScreen } from './DriversScreen';
 export { default as HomeScreen } from './HomeScreen';
 export { default as PitstopsScreen } from './PitstopsScreen';
+export { default as RaceScreen } from './RaceScreen';
 export { default as RacesScreen } from './RacesScreen';
 export { default as RankingsDriversScreen } from './RankingsDriversScreen';
 export { default as RankingsFastestLapsScreen } from './RankingsFastestLapsScreen';

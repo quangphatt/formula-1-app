@@ -52,14 +52,14 @@ export const MENU_ITEMS = [
       name: 'chart-simple',
     },
   },
-  {
-    name: 'Pit Stops',
-    route: 'Pitstops',
-    icon: {
-      name: 'stop',
-      type: 'Octicons',
-    },
-  },
+  // {
+  //   name: 'Pit Stops',
+  //   route: 'Pitstops',
+  //   icon: {
+  //     name: 'stop',
+  //     type: 'Octicons',
+  //   },
+  // },
 ];
 
 export const RANKING_TABS = [
