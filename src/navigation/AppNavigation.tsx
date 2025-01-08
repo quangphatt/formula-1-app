@@ -17,11 +17,14 @@ import {
 import RankingNavigation from './RankingNavigation';
 import DrawerContent from './DrawerContent';
 import { RootDrawerParamList } from './types';
+import BootSplash from 'react-native-bootsplash';
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 const AppNavigation = () => {
-  const onReady = () => {};
+  const onReady = () => {
+    BootSplash.hide();
+  };
 
   return (
     <NavigationContainer onReady={onReady}>
