@@ -8,7 +8,7 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 const RankingBottomTabbar = ({ navigation }: BottomTabBarProps) => {
   const { theme } = useTheme();
   // const { name } = useRoute();
-  const { navigate } = useNavigation();
+  // const { navigate } = useNavigation();
 
   return (
     <View
@@ -30,7 +30,7 @@ const RankingBottomTabbar = ({ navigation }: BottomTabBarProps) => {
           route === currentRoute;
 
         const onPress = () => {
-          navigate(route as never);
+          navigation.navigate(route as never);
         };
 
         return (

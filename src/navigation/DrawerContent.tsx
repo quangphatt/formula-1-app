@@ -1,16 +1,20 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Icon, Image, Text, useTheme } from '@rneui/themed';
-import { navigate, getCurrentRoute, closeDrawer } from './actions';
 import f1_img from '@assets/images/f1-mini.png';
 import { MENU_ITEMS } from '@data/menu_item';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
-const DrawerContent = () => {
+const DrawerContent = ({ navigation }: DrawerContentComponentProps) => {
+  const onPressItem = (route: string) => {
+    navigation.navigate(route);
+  };
+
   return (
     <View>
       <Image source={f1_img} width={240} height={120} />
       <TouchableOpacity
-        onPress={closeDrawer}
+        onPress={() => navigation.closeDrawer()}
         style={{
           position: 'absolute',
           right: 15,
@@ -21,7 +25,7 @@ const DrawerContent = () => {
       </TouchableOpacity>
       <View style={{ paddingHorizontal: 5, paddingVertical: 5 }}>
         {MENU_ITEMS.map((item) => (
-          <MenuItem item={item} key={item.route} />
+          <MenuItem item={item} key={item.route} onPressItem={onPressItem} />
         ))}
       </View>
     </View>
@@ -30,23 +34,26 @@ const DrawerContent = () => {
 
 export default DrawerContent;
 
-const MenuItem = ({ item }) => {
+type MenuItemProps = {
+  item: any;
+  onPressItem: (route: string) => void;
+};
+
+const MenuItem = ({ item, onPressItem }: MenuItemProps) => {
   const { name, route, icon } = item;
-  const currentRoute = getCurrentRoute()?.name;
+  const currentRoute = name;
   const isCurrentRoute =
     route === 'Ranking'
       ? currentRoute?.includes('Ranking')
       : route === currentRoute;
   const { theme } = useTheme();
 
-  const onPress = () => {
-    navigate(route);
-  };
-
   return (
     <TouchableOpacity
       disabled={isCurrentRoute}
-      onPress={onPress}
+      onPress={() => {
+        onPressItem(route);
+      }}
       style={{
         flexDirection: 'row',
         gap: 5,
