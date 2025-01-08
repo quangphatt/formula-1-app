@@ -1,18 +1,26 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Header, CompetitionItem, ListSearch } from '@components';
 import { useCompetition } from '@hooks';
+import { CompetitionItem } from '@components/competition/CompetitionItem';
+import Header from '@components/Header';
+import { ListSearch } from '@components/ListSearch';
 
-const CompetitionsScreen = () => {
-  const { competitions, isLoading } = useCompetition();
+type CompetitionsScreenProps = {
+  navigation: any;
+};
 
-  const renderItem = ({ item, index }) => {
-    return <CompetitionItem key={item.id} {...item} />;
+const CompetitionsScreen = ({ navigation }: CompetitionsScreenProps) => {
+  const { competitions } = useCompetition();
+
+  const renderItem = ({ item }: { item: any }) => {
+    return <CompetitionItem key={item.id} {...item} navigation={navigation} />;
   };
 
-  const filterData = (searchText) => {
-    if (!competitions?.length) return [];
-    return competitions.filter((item) =>
+  const filterData = (searchText: string) => {
+    if (!competitions?.length) {
+      return [];
+    }
+    return competitions.filter((item: any) =>
       item.name.toUpperCase().includes(searchText.toUpperCase()),
     );
   };

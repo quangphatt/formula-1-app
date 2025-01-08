@@ -1,21 +1,15 @@
 import React from 'react';
 import { View, useWindowDimensions } from 'react-native';
-import {
-  Button,
-  TextH1,
-  TextH3,
-  Image,
-  Icon,
-  ButtonPreventDouble,
-} from '@components';
-import { MENU_ITEMS, openDrawer, navigate } from '@navigation';
+import { Button, Icon, Image, Text } from '@rneui/themed';
 import f1_img from '@assets/images/f1-mini.png';
-import theme from '@components/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { MENU_ITEMS } from '@data/menu_item';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<any>();
 
   return (
     <View
@@ -25,8 +19,8 @@ const HomeScreen = () => {
       }}
     >
       <Image source={f1_img} width={width} height={width / 2.4} />
-      <ButtonPreventDouble
-        onPress={openDrawer}
+      <Button
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
         style={{
           position: 'absolute',
           left: 15,
@@ -34,8 +28,8 @@ const HomeScreen = () => {
         }}
       >
         <Icon name="menu" type="Ionicons" size={32} />
-      </ButtonPreventDouble>
-      <TextH1 bold>Formula 1</TextH1>
+      </Button>
+      <Text>Formula 1</Text>
       <View
         style={{
           flexDirection: 'row',
@@ -45,14 +39,14 @@ const HomeScreen = () => {
       >
         {MENU_ITEMS.filter((item) => item.route !== 'Home').map(
           ({ name, route, icon }) => (
-            <ButtonPreventDouble
+            <Button
               key={route}
               onPress={() => {
-                navigate(route);
+                navigation.navigate(route);
               }}
               style={{
                 width: width * 0.45,
-                backgroundColor: theme.colors.primary_color,
+                // backgroundColor: theme.colors.primary_color,
                 alignItems: 'center',
                 borderRadius: 10,
                 marginBottom: 10,
@@ -60,8 +54,8 @@ const HomeScreen = () => {
               }}
             >
               <Icon {...icon} size={32} />
-              <TextH3 bold>{name}</TextH3>
-            </ButtonPreventDouble>
+              <Text>{name}</Text>
+            </Button>
           ),
         )}
       </View>

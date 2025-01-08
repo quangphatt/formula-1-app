@@ -1,19 +1,22 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TextSubBody, Icon, ButtonPreventDouble } from '@components';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { navigate, getCurrentRoute } from './actions';
-import theme from '@components/theme';
-import { RANKING_TABS } from './menu_item';
+import { RANKING_TABS } from '@data/menu_item';
+import { Button, Icon, Text, useTheme } from '@rneui/themed';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-const RankingBottomTabbar = ({ navigation }) => {
+const RankingBottomTabbar = ({ navigation }: BottomTabBarProps) => {
+  const { theme } = useTheme();
+  // const { name } = useRoute();
+  const { navigate } = useNavigation();
+
   return (
     <View
       style={{
         flexDirection: 'row',
         height: 64,
-        backgroundColor: theme.colors.white_color,
-        shadowColor: theme.colors.black_color,
+        backgroundColor: theme.colors.white,
+        shadowColor: theme.colors.black,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -21,17 +24,17 @@ const RankingBottomTabbar = ({ navigation }) => {
       }}
     >
       {RANKING_TABS.map(({ name, route, icon }) => {
-        const currentRoute = getCurrentRoute()?.name;
+        const currentRoute = route;
         const isCurrentRoute =
           (route === 'RankingsTeams' && currentRoute === 'Ranking') ||
           route === currentRoute;
 
         const onPress = () => {
-          navigate(route);
+          navigate(route as never);
         };
 
         return (
-          <ButtonPreventDouble
+          <Button
             disabled={isCurrentRoute}
             key={route}
             onPress={onPress}
@@ -40,19 +43,14 @@ const RankingBottomTabbar = ({ navigation }) => {
               alignItems: 'center',
               borderTopWidth: 2,
               borderColor: isCurrentRoute
-                ? theme.colors.primary_color
+                ? theme.colors.primary
                 : 'transparent',
               paddingVertical: 5,
             }}
           >
-            <Icon size={icon.size || 24} primary={isCurrentRoute} {...icon} />
-            <TextSubBody
-              primary={isCurrentRoute}
-              style={{ textAlign: 'center' }}
-            >
-              {name}
-            </TextSubBody>
-          </ButtonPreventDouble>
+            <Icon size={24} {...icon} />
+            <Text style={{ textAlign: 'center' }}>{name}</Text>
+          </Button>
         );
       })}
     </View>

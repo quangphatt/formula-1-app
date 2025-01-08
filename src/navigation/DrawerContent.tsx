@@ -1,17 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TextBody, Image, Icon, ButtonPreventDouble } from '@components';
-import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity, View } from 'react-native';
+import { Icon, Image, Text, useTheme } from '@rneui/themed';
 import { navigate, getCurrentRoute, closeDrawer } from './actions';
-import theme from '@components/theme';
 import f1_img from '@assets/images/f1-mini.png';
-import { MENU_ITEMS } from './menu_item';
+import { MENU_ITEMS } from '@data/menu_item';
 
 const DrawerContent = () => {
   return (
     <View>
       <Image source={f1_img} width={240} height={120} />
-      <ButtonPreventDouble
+      <TouchableOpacity
         onPress={closeDrawer}
         style={{
           position: 'absolute',
@@ -20,7 +18,7 @@ const DrawerContent = () => {
         }}
       >
         <Icon name="xmark" size={24} />
-      </ButtonPreventDouble>
+      </TouchableOpacity>
       <View style={{ paddingHorizontal: 5, paddingVertical: 5 }}>
         {MENU_ITEMS.map((item) => (
           <MenuItem item={item} key={item.route} />
@@ -39,13 +37,14 @@ const MenuItem = ({ item }) => {
     route === 'Ranking'
       ? currentRoute?.includes('Ranking')
       : route === currentRoute;
+  const { theme } = useTheme();
 
   const onPress = () => {
     navigate(route);
   };
 
   return (
-    <ButtonPreventDouble
+    <TouchableOpacity
       disabled={isCurrentRoute}
       onPress={onPress}
       style={{
@@ -53,16 +52,12 @@ const MenuItem = ({ item }) => {
         gap: 5,
         alignItems: 'center',
         padding: 10,
-        backgroundColor: isCurrentRoute
-          ? theme.background_colors.item_background_color
-          : 'transparent',
+        backgroundColor: isCurrentRoute ? theme.colors.primary : 'transparent',
         borderRadius: 5,
       }}
     >
       <Icon size={icon.size || 22} {...icon} width={26} />
-      <TextBody bold fontSize={22}>
-        {name}
-      </TextBody>
-    </ButtonPreventDouble>
+      <Text>{name}</Text>
+    </TouchableOpacity>
   );
 };

@@ -2,7 +2,7 @@ import axios from 'axios';
 import NetInfo from '@react-native-community/netinfo';
 import { API_HOST, API_KEY } from '@env';
 
-export const get = async (suburl, params = {}) => {
+export const get = async (suburl: string, params = {}) => {
   const state = await NetInfo.fetch();
   if (state.isConnected) {
     let result = await axios.get('https://' + API_HOST + suburl, {
@@ -14,5 +14,5 @@ export const get = async (suburl, params = {}) => {
     });
     return result;
   }
-  return { data: { httpCode: 0 } };
+  return { data: { httpCode: 0 }, status: 500 };
 };

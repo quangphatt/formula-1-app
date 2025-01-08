@@ -7,21 +7,22 @@ import {
   RankingsTeamsScreen,
 } from '@screens';
 import RankingBottomTabbar from './RankingBottomTabbar';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useNavigation } from '@react-navigation/native';
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import { RankingTabParamList } from './types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RankingTabParamList>();
 
 const RankingNavigation = () => {
-  const navigation = useNavigation();
-
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
       }}
       initialRouteName="RankingsTeams"
-      tabBar={(props) => <RankingBottomTabbar {...props} />}
+      tabBar={BottomTabbar}
     >
       <Tab.Screen name="RankingsTeams" component={RankingsTeamsScreen} />
       <Tab.Screen name="RankingsDrivers" component={RankingsDriversScreen} />
@@ -37,5 +38,9 @@ const RankingNavigation = () => {
     </Tab.Navigator>
   );
 };
+
+const BottomTabbar = (props: BottomTabBarProps) => (
+  <RankingBottomTabbar {...props} />
+);
 
 export default RankingNavigation;

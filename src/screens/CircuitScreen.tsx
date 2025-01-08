@@ -1,16 +1,22 @@
 import React from 'react';
 import { View, ScrollView, useWindowDimensions } from 'react-native';
-import { Header, Image, TextBody } from '@components';
-import { navigate } from '@navigation';
+import Header from '@components/Header';
+import LineInfo from '@components/shared/LineInfo';
+import { Image } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const CircuitScreen = ({ route }) => {
+type CircuitScreenProps = {
+  route: any;
+  navigation: any;
+};
+
+const CircuitScreen = ({ route, navigation }: CircuitScreenProps) => {
   const { data } = route.params;
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
   const actionLeft = () => {
-    navigate('Circuits');
+    navigation.navigate('Circuits');
   };
 
   return (
@@ -25,7 +31,7 @@ const CircuitScreen = ({ route }) => {
       >
         <Image
           source={{ uri: data.image }}
-          width={'100%'}
+          width={width}
           height={width * 0.5}
           style={{
             alignSelf: 'center',
@@ -54,15 +60,3 @@ const CircuitScreen = ({ route }) => {
 };
 
 export default CircuitScreen;
-
-const LineInfo = ({ label, value }) => {
-  if (!value) return null;
-  return (
-    <TextBody fontSize={20}>
-      <TextBody bold fontSize={20}>
-        {label}:
-      </TextBody>{' '}
-      {value}
-    </TextBody>
-  );
-};

@@ -1,4 +1,5 @@
 export const RACES = {
+  '2025': [],
   '2024': [
     {
       id: 1857,

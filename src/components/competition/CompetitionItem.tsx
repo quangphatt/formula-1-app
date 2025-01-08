@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text, TextH3 } from '@components';
-import theme from '@components/theme';
+import { Text, useTheme } from '@rneui/themed';
 
 type CompetitionItemProps = {
   id: number;
@@ -17,17 +16,19 @@ export const CompetitionItem = ({
   name,
   location,
 }: CompetitionItemProps) => {
+  const { theme } = useTheme();
+
   return (
     <View
       style={{
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
-        borderColor: theme.colors.dark_gray_color,
+        borderColor: theme.colors.grey4,
         gap: 5,
       }}
     >
-      <TextH3>{name}</TextH3>
+      <Text>{name}</Text>
       <Text>
         {location.city}, {location.country}
       </Text>

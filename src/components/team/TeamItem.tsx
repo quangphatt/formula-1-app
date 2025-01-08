@@ -1,23 +1,28 @@
+import { Image, Text, useTheme } from '@rneui/themed';
 import React from 'react';
-import { View } from 'react-native';
-import { Text, TextH3, Image, ButtonPreventDouble } from '@components';
-import theme from '@components/theme';
-import { navigate } from '@navigation';
+import { TouchableOpacity, View } from 'react-native';
 
-export const TeamItem = ({ data }) => {
+type TeamItemProps = {
+  data: any;
+  navigation: any;
+};
+
+export const TeamItem = ({ data, navigation }: TeamItemProps) => {
+  const { theme } = useTheme();
+
   const onPress = () => {
-    navigate('Team', { data });
+    navigation.navigate('Team', { data });
   };
 
   return (
-    <ButtonPreventDouble
+    <TouchableOpacity
       onPress={onPress}
       style={{
         flexDirection: 'row',
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
-        borderColor: theme.colors.dark_gray_color,
+        borderColor: theme.colors.grey3,
         gap: 10,
         alignItems: 'center',
       }}
@@ -29,9 +34,9 @@ export const TeamItem = ({ data }) => {
         resizeMode="contain"
       />
       <View style={{ flex: 1 }}>
-        <TextH3>{data.name.replace('\n', '')}</TextH3>
+        <Text>{data.name.replace('\n', '')}</Text>
         {!!data.base && <Text>{data.base}</Text>}
       </View>
-    </ButtonPreventDouble>
+    </TouchableOpacity>
   );
 };

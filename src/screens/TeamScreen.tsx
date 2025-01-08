@@ -1,17 +1,22 @@
 import React from 'react';
 import { View, ScrollView, useWindowDimensions } from 'react-native';
-import { Header, Image, TextBody } from '@components';
-import { navigate } from '@navigation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import theme from '@components/theme';
+import LineInfo from '@components/shared/LineInfo';
+import Header from '@components/Header';
+import { Image } from '@rneui/themed';
 
-const TeamScreen = ({ route }) => {
+type TeamScreenProps = {
+  route: any;
+  navigation: any;
+};
+
+const TeamScreen = ({ route, navigation }: TeamScreenProps) => {
   const { data } = route.params;
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
   const actionLeft = () => {
-    navigate('Teams');
+    navigation.navigate('Teams');
   };
 
   return (
@@ -26,11 +31,11 @@ const TeamScreen = ({ route }) => {
       >
         <Image
           source={{ uri: data.logo }}
-          width={'60%'}
+          width={width * 0.6}
           height={width * 0.4}
           style={{
             alignSelf: 'center',
-            backgroundColor: theme.colors.white_color,
+            // backgroundColor: theme.colors.white_color,
           }}
           resizeMode="contain"
         />
@@ -61,15 +66,3 @@ const TeamScreen = ({ route }) => {
 };
 
 export default TeamScreen;
-
-const LineInfo = ({ label, value }) => {
-  if (!value) return null;
-  return (
-    <TextBody fontSize={20}>
-      <TextBody bold fontSize={20}>
-        {label}:
-      </TextBody>{' '}
-      {value}
-    </TextBody>
-  );
-};

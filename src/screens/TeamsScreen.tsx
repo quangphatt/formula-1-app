@@ -1,18 +1,26 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Header, TeamItem, ListSearch } from '@components';
 import { useTeam } from '@hooks';
+import { ListSearch } from '@components/ListSearch';
+import Header from '@components/Header';
+import { TeamItem } from '@components/team/TeamItem';
 
-const TeamsScreen = () => {
-  const { teams, isLoading } = useTeam();
+type TeamsScreenProps = {
+  navigation: any;
+};
 
-  const renderItem = ({ item, index }) => {
-    return <TeamItem key={item.id} data={item} />;
+const TeamsScreen = ({ navigation }: TeamsScreenProps) => {
+  const { teams } = useTeam();
+
+  const renderItem = ({ item }: { item: any }) => {
+    return <TeamItem key={item.id} data={item} navigation={navigation} />;
   };
 
-  const filterData = (searchText) => {
-    if (!teams?.length) return [];
-    return teams.filter((item) =>
+  const filterData = (searchText: string) => {
+    if (!teams?.length) {
+      return [];
+    }
+    return teams.filter((item: any) =>
       item.name.toUpperCase().includes(searchText.toUpperCase()),
     );
   };

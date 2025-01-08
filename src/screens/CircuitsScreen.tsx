@@ -1,18 +1,26 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Header, CircuitItem, ListSearch } from '@components';
 import { useCircuit } from '@hooks';
+import { CircuitItem } from '@components/circuit/CircuitItem';
+import Header from '@components/Header';
+import { ListSearch } from '@components/ListSearch';
 
-const CircuitsScreen = () => {
-  const { circuits, isLoading } = useCircuit();
+type CircuitsScreenProps = {
+  navigation: any;
+};
 
-  const renderItem = ({ item, index }) => {
-    return <CircuitItem key={item.id} data={item} />;
+const CircuitsScreen = ({ navigation }: CircuitsScreenProps) => {
+  const { circuits } = useCircuit();
+
+  const renderItem = ({ item }: { item: any }) => {
+    return <CircuitItem key={item.id} data={item} navigation={navigation} />;
   };
 
-  const filterData = (searchText) => {
-    if (!circuits?.length) return [];
-    return circuits.filter((item) =>
+  const filterData = (searchText: string) => {
+    if (!circuits?.length) {
+      return [];
+    }
+    return circuits.filter((item: any) =>
       item.name.toUpperCase().includes(searchText.toUpperCase()),
     );
   };

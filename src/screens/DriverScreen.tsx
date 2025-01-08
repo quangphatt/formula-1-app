@@ -1,23 +1,33 @@
+import Header from '@components/Header';
+import LineInfo from '@components/shared/LineInfo';
+import { Image } from '@rneui/themed';
 import React from 'react';
 import { View, ScrollView, useWindowDimensions } from 'react-native';
-import { Header, Image, TextBody } from '@components';
-import { navigate } from '@navigation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const DriverScreen = ({ route }) => {
+type DriverScreenProps = {
+  route: any;
+  navigation: any;
+};
+
+const DriverScreen = ({ route, navigation }: DriverScreenProps) => {
   const { data } = route.params;
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
   const actionLeft = () => {
-    navigate('Drivers');
+    navigation.navigate('Drivers');
   };
 
   const getTeamsString = () => {
-    if (!data.teams.length) return '';
+    if (!data.teams.length) {
+      return '';
+    }
     const groupedTeams = [{}, ...data.teams].reduce((group, _team) => {
       const { team } = _team;
-      if (!team) return {};
+      if (!team) {
+        return {};
+      }
       group[team.name] = group[team.name] ?? [];
       group[team.name].push(_team);
       return group;
@@ -49,7 +59,7 @@ const DriverScreen = ({ route }) => {
       >
         <Image
           source={{ uri: data.image }}
-          width={'100%'}
+          width={width}
           height={width * 0.5}
           style={{
             alignSelf: 'center',
@@ -99,15 +109,3 @@ const DriverScreen = ({ route }) => {
 };
 
 export default DriverScreen;
-
-const LineInfo = ({ label, value }) => {
-  if (!value) return null;
-  return (
-    <TextBody fontSize={20}>
-      <TextBody bold fontSize={20}>
-        {label}:
-      </TextBody>{' '}
-      {value}
-    </TextBody>
-  );
-};

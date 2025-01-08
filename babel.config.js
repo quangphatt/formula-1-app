@@ -8,13 +8,17 @@ module.exports = {
         alias: {
           '@assets': './src/assets',
           '@components': './src/components',
+          '@configs': './src/configs',
+          '@contexts': './src/contexts',
+          '@data': './src/data',
+          '@hooks': './src/hooks',
           '@navigation': './src/navigation',
           '@screens': './src/screens',
           '@services': './src/services',
-          '@data': './src/data',
-          '@hooks': './src/hooks',
-        }
-      }
+          '@types': './src/types',
+          '@utils': './src/utils',
+        },
+      },
     ],
     [
       'module:react-native-dotenv',
@@ -24,9 +28,9 @@ module.exports = {
         path: '.env',
         safe: false,
         allowUndefined: true,
-        verbose: false
-      }
+        verbose: false,
+      },
     ],
-    'react-native-reanimated/plugin'
+    'react-native-reanimated/plugin',
   ],
 };

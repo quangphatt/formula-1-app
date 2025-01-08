@@ -1,9 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TextH3, Icon, ButtonPreventDouble } from '@components';
-import theme from '@components/theme';
+import { View, TouchableOpacity } from 'react-native';
+import { Icon, Text, useTheme } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { openDrawer, goBack } from '@navigation';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 
 type HeaderProps = {
   title: string;
@@ -11,20 +10,32 @@ type HeaderProps = {
   actionLeft?: () => void;
 };
 
-export const Header = ({ title = '', hasBackButton, actionLeft }) => {
+const Header = ({ title = '', hasBackButton, actionLeft }: HeaderProps) => {
   const insets = useSafeAreaInsets();
+  const { theme } = useTheme();
+  const navigation = useNavigation();
+
+  const goBack = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
+  };
+
+  const openDrawer = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  };
 
   return (
     <View
       style={{
         flexDirection: 'row',
-        backgroundColor: theme.colors.primary_color,
+        backgroundColor: theme.colors.primary,
         height: 44,
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
-      <ButtonPreventDouble
+      <TouchableOpacity
         onPress={actionLeft ? actionLeft : hasBackButton ? goBack : openDrawer}
         style={{
           position: 'absolute',
@@ -34,21 +45,21 @@ export const Header = ({ title = '', hasBackButton, actionLeft }) => {
       >
         <Icon
           name={hasBackButton || actionLeft ? 'arrow-back' : 'menu'}
-          type="Ionicons"
+          type="ionicon"
           size={30}
-          color={theme.colors.white_color}
         />
-      </ButtonPreventDouble>
-      <TextH3
+      </TouchableOpacity>
+      <Text
         style={{
           paddingHorizontal: 50,
           textAlign: 'center',
         }}
         numberOfLines={1}
-        color={theme.colors.white_color}
       >
         {title}
-      </TextH3>
+      </Text>
     </View>
   );
 };
+
+export default Header;

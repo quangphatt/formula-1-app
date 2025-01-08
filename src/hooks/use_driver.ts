@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { DRIVERS } from '@data';
+import { DRIVERS } from '@data/drivers';
 
 export const useDriver = (params = {}) => {
   const { data, isLoading } = useQuery({

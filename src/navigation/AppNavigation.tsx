@@ -1,6 +1,4 @@
-import React, { useRef } from 'react';
-import { View } from 'react-native';
-import { Icon, Button, Image } from '@components';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
@@ -18,30 +16,15 @@ import {
 } from '@screens';
 import RankingNavigation from './RankingNavigation';
 import DrawerContent from './DrawerContent';
-import { navigationRef, isReadyRef } from './actions';
+import { RootDrawerParamList } from './types';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 const AppNavigation = () => {
-  const routeNameRef = useRef();
-
-  const onReady = () => {
-    isReadyRef.current = true;
-    routeNameRef.current = navigationRef.current.getCurrentRoute().name;
-  };
-
-  const onStateChange = async () => {
-    const previousRouteName = routeNameRef.current;
-    const currentRouteName = navigationRef.current.getCurrentRoute().name;
-    routeNameRef.current = currentRouteName;
-  };
+  const onReady = () => {};
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={onReady}
-      onStateChange={onStateChange}
-    >
+    <NavigationContainer onReady={onReady}>
       <Drawer.Navigator
         screenOptions={{
           headerShown: false,

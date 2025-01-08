@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { RACES } from '@data';
+import { RACES } from '@data/races';
 
-export const useRace = (params = {}) => {
+export const useRace = (params: any = {}) => {
   const { data, isLoading } = useQuery({
     queryKey: ['race', params],
     queryFn: () => {
       const season = params?.season ?? '2024';
-      return RACES[season];
+      return RACES[season as keyof typeof RACES];
     },
   });
   return { drivers: data, isLoading };
