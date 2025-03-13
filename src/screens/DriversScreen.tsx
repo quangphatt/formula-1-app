@@ -28,7 +28,11 @@ const DriversScreen = ({ navigation }: DriversScreenProps) => {
   return (
     <View style={{ flex: 1 }}>
       <Header title="Drivers" />
-      <ListSearch filterData={filterData} renderItem={renderItem} />
+      <ListSearch
+        filterData={filterData}
+        renderItem={renderItem}
+        estimatedItemSize={56}
+      />
     </View>
   );
 };

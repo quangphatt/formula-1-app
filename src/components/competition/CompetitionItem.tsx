@@ -26,6 +26,7 @@ export const CompetitionItem = ({
         borderRadius: 10,
         borderColor: theme.colors.grey4,
         gap: 5,
+        marginBottom: 10,
       }}
     >
       <Text>{name}</Text>

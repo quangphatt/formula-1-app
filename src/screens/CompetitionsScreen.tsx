@@ -28,7 +28,11 @@ const CompetitionsScreen = ({ navigation }: CompetitionsScreenProps) => {
   return (
     <View style={{ flex: 1 }}>
       <Header title="Competitions" />
-      <ListSearch filterData={filterData} renderItem={renderItem} />
+      <ListSearch
+        filterData={filterData}
+        renderItem={renderItem}
+        estimatedItemSize={56}
+      />
     </View>
   );
 };

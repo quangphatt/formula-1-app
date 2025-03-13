@@ -1,14 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { TouchableOpacity, View } from 'react-native';
 import { RANKING_TABS } from '@data/menu_item';
-import { Button, Icon, Text, useTheme } from '@rneui/themed';
+import { Icon, Text, useTheme } from '@rneui/themed';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { getCurrentRoute } from './actions';
 
 const RankingBottomTabbar = ({ navigation }: BottomTabBarProps) => {
   const { theme } = useTheme();
-  // const { name } = useRoute();
-  // const { navigate } = useNavigation();
 
   return (
     <View
@@ -24,7 +22,7 @@ const RankingBottomTabbar = ({ navigation }: BottomTabBarProps) => {
       }}
     >
       {RANKING_TABS.map(({ name, route, icon }) => {
-        const currentRoute = route;
+        const currentRoute = getCurrentRoute()?.name ?? '';
         const isCurrentRoute =
           (route === 'RankingsTeams' && currentRoute === 'Ranking') ||
           route === currentRoute;
@@ -34,7 +32,7 @@ const RankingBottomTabbar = ({ navigation }: BottomTabBarProps) => {
         };
 
         return (
-          <Button
+          <TouchableOpacity
             disabled={isCurrentRoute}
             key={route}
             onPress={onPress}
@@ -48,9 +46,22 @@ const RankingBottomTabbar = ({ navigation }: BottomTabBarProps) => {
               paddingVertical: 5,
             }}
           >
-            <Icon size={24} {...icon} />
-            <Text style={{ textAlign: 'center' }}>{name}</Text>
-          </Button>
+            <Icon
+              size={24}
+              {...icon}
+              color={isCurrentRoute ? theme.colors.primary : theme.colors.black}
+            />
+            <Text
+              style={{
+                textAlign: 'center',
+                color: isCurrentRoute
+                  ? theme.colors.primary
+                  : theme.colors.black,
+              }}
+            >
+              {name}
+            </Text>
+          </TouchableOpacity>
         );
       })}
     </View>

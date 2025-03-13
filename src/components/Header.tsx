@@ -30,9 +30,10 @@ const Header = ({ title = '', hasBackButton, actionLeft }: HeaderProps) => {
       style={{
         flexDirection: 'row',
         backgroundColor: theme.colors.primary,
-        height: 44,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: insets.top + 10,
+        paddingBottom: 10,
       }}
     >
       <TouchableOpacity
@@ -53,6 +54,8 @@ const Header = ({ title = '', hasBackButton, actionLeft }: HeaderProps) => {
         style={{
           paddingHorizontal: 50,
           textAlign: 'center',
+          fontSize: 20,
+          fontWeight: 'bold',
         }}
         numberOfLines={1}
       >

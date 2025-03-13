@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import LineInfo from '@components/shared/LineInfo';
+import { LineInfo } from '@components/shared';
 import Header from '@components/Header';
 import { Image } from '@rneui/themed';
 

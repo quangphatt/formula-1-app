@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
@@ -18,16 +18,28 @@ import RankingNavigation from './RankingNavigation';
 import DrawerContent from './DrawerContent';
 import { RootDrawerParamList } from './types';
 import BootSplash from 'react-native-bootsplash';
+import { navigationRef } from './actions';
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 const AppNavigation = () => {
+  const routeNameRef = useRef(null);
+
   const onReady = () => {
     BootSplash.hide();
+    routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+  };
+
+  const onStateChange = async () => {
+    routeNameRef.current = navigationRef.current.getCurrentRoute().name;
   };
 
   return (
-    <NavigationContainer onReady={onReady}>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={onReady}
+      onStateChange={onStateChange}
+    >
       <Drawer.Navigator
         screenOptions={{
           headerShown: false,

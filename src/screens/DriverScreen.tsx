@@ -1,5 +1,5 @@
 import Header from '@components/Header';
-import LineInfo from '@components/shared/LineInfo';
+import { LineInfo } from '@components/shared';
 import { Image } from '@rneui/themed';
 import React from 'react';
 import { View, ScrollView, useWindowDimensions } from 'react-native';

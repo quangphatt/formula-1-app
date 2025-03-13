@@ -5,7 +5,7 @@ export const useRace = (params: any = {}) => {
   const { data, isLoading } = useQuery({
     queryKey: ['race', params],
     queryFn: () => {
-      const season = params?.season ?? '2024';
+      const season = params?.season ?? '2025';
       return RACES[season as keyof typeof RACES];
     },
   });

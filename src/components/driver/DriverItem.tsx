@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Button, Image, Text, useTheme } from '@rneui/themed';
+import { Pressable, View } from 'react-native';
+import { Image, Text, useTheme } from '@rneui/themed';
 
 type DriverItemProps = {
   data: any;
@@ -15,14 +15,14 @@ export const DriverItem = ({ data, navigation }: DriverItemProps) => {
   };
 
   return (
-    <Button
+    <Pressable
       onPress={onPress}
       style={{
         flexDirection: 'row',
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
-        borderColor: theme.colors.grey3,
+        borderColor: theme.colors.grey4,
         gap: 10,
         alignItems: 'center',
       }}
@@ -40,6 +40,6 @@ export const DriverItem = ({ data, navigation }: DriverItemProps) => {
           <Text>{data.teams[0].team.name}</Text>
         )}
       </View>
-    </Button>
+    </Pressable>
   );
 };

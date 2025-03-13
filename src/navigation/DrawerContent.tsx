@@ -1,34 +1,24 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { Icon, Image, Text, useTheme } from '@rneui/themed';
-import f1_img from '@assets/images/f1-mini.png';
+import { Icon, Text, useTheme } from '@rneui/themed';
 import { MENU_ITEMS } from '@data/menu_item';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { getCurrentRoute } from './actions';
 
 const DrawerContent = ({ navigation }: DrawerContentComponentProps) => {
-  const onPressItem = (route: string) => {
-    navigation.navigate(route);
+  const onPressItem = (routeName: string) => {
+    navigation.navigate(routeName);
   };
 
   return (
-    <View>
-      <Image source={f1_img} width={240} height={120} />
-      <TouchableOpacity
-        onPress={() => navigation.closeDrawer()}
-        style={{
-          position: 'absolute',
-          right: 15,
-          top: 10,
-        }}
-      >
-        <Icon name="xmark" size={24} />
-      </TouchableOpacity>
+    <SafeAreaView>
       <View style={{ paddingHorizontal: 5, paddingVertical: 5 }}>
         {MENU_ITEMS.map((item) => (
           <MenuItem item={item} key={item.route} onPressItem={onPressItem} />
         ))}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -41,7 +31,7 @@ type MenuItemProps = {
 
 const MenuItem = ({ item, onPressItem }: MenuItemProps) => {
   const { name, route, icon } = item;
-  const currentRoute = name;
+  const currentRoute = getCurrentRoute()?.name ?? '';
   const isCurrentRoute =
     route === 'Ranking'
       ? currentRoute?.includes('Ranking')

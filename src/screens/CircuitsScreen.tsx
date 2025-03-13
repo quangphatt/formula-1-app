@@ -28,7 +28,11 @@ const CircuitsScreen = ({ navigation }: CircuitsScreenProps) => {
   return (
     <View style={{ flex: 1 }}>
       <Header title="Circuits" />
-      <ListSearch filterData={filterData} renderItem={renderItem} />
+      <ListSearch
+        filterData={filterData}
+        renderItem={renderItem}
+        estimatedItemSize={56}
+      />
     </View>
   );
 };

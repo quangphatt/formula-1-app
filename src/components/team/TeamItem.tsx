@@ -22,7 +22,7 @@ export const TeamItem = ({ data, navigation }: TeamItemProps) => {
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
-        borderColor: theme.colors.grey3,
+        borderColor: theme.colors.grey4,
         gap: 10,
         alignItems: 'center',
       }}

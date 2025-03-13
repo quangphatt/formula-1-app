@@ -4,7 +4,7 @@ export const MENU_ITEMS = [
     route: 'Home',
     icon: {
       name: 'home',
-      type: 'FontAwesome',
+      type: 'font-awesome',
     },
   },
   {
@@ -12,7 +12,7 @@ export const MENU_ITEMS = [
     route: 'Competitions',
     icon: {
       name: 'Trophy',
-      type: 'AntDesign',
+      type: 'antdesign',
     },
   },
   {
@@ -20,7 +20,7 @@ export const MENU_ITEMS = [
     route: 'Circuits',
     icon: {
       name: 'timer',
-      type: 'Ionicons',
+      type: 'ionicon',
     },
   },
   {
@@ -29,6 +29,7 @@ export const MENU_ITEMS = [
     icon: {
       name: 'users',
       size: 18,
+      type: 'font-awesome',
     },
   },
   {
@@ -36,6 +37,7 @@ export const MENU_ITEMS = [
     route: 'Drivers',
     icon: {
       name: 'user',
+      type: 'font-awesome',
     },
   },
   {
@@ -43,13 +45,15 @@ export const MENU_ITEMS = [
     route: 'Races',
     icon: {
       name: 'flag-checkered',
+      type: 'font-awesome',
     },
   },
   {
     name: 'Ranking',
     route: 'Ranking',
     icon: {
-      name: 'chart-simple',
+      name: 'area-chart',
+      type: 'font-awesome',
     },
   },
   {
@@ -57,7 +61,7 @@ export const MENU_ITEMS = [
     route: 'Pitstops',
     icon: {
       name: 'stop',
-      type: 'Octicons',
+      type: 'octicon',
     },
   },
 ];
@@ -68,6 +72,7 @@ export const RANKING_TABS = [
     route: 'RankingsTeams',
     icon: {
       name: 'users',
+      type: 'font-awesome',
     },
   },
   {
@@ -75,6 +80,7 @@ export const RANKING_TABS = [
     route: 'RankingsDrivers',
     icon: {
       name: 'user',
+      type: 'font-awesome',
     },
   },
   {
@@ -82,6 +88,7 @@ export const RANKING_TABS = [
     route: 'RankingsRaces',
     icon: {
       name: 'flag-checkered',
+      type: 'font-awesome',
     },
   },
   {
@@ -89,7 +96,7 @@ export const RANKING_TABS = [
     route: 'RankingsFastestLaps',
     icon: {
       name: 'timer-outline',
-      type: 'Ionicons',
+      type: 'ionicon',
     },
   },
   {
@@ -97,7 +104,7 @@ export const RANKING_TABS = [
     route: 'RankingsStartingGrid',
     icon: {
       name: 'grid',
-      type: 'Ionicons',
+      type: 'ionicon',
     },
   },
 ];
